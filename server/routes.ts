@@ -10,21 +10,7 @@ import rateLimit from "express-rate-limit";
 
 // Playlist sources com fallback
 const PLAYLIST_SOURCES = [
-  "https://iptv-org.github.io/iptv/countries/br.m3u",
-  // você pode adicionar mais URLs de backup aqui
-];
-
-let currentSourceIndex = 0;
-const startTime = Date.now();
-
-// Cache em memória
-let cachedChannels: Channel[] = [];
-let cachedPlaylist: string = "";
-let cacheTimestamp = 0;
-const CACHE_DURATION = 3600 * 1000; // 1 hora
-
-const EXTRA_BR = `
-#EXTINF:-1 group-title="Brazil",BR: LIGA FUTSAL HD
+  "#EXTINF:-1 group-title="Brazil",BR: LIGA FUTSAL HD
 http://tooontv.com:999/live/ere3444h/agape/199106.ts
 #EXTINF:-1 group-title="Brazil",BR: TNT Sports Estadio 6 HD
 http://tooontv.com:999/live/ere3444h/agape/199107.ts
@@ -435,7 +421,20 @@ http://tooontv.com:999/live/ere3444h/agape/199018.ts
 #EXTINF:-1 group-title="Brazil",BR: ESPN 2HD
 http://tooontv.com:999/live/ere3444h/agape/199010.ts
 #EXTINF:-1 group-title="Brazil",BR: Dazn 1
-http://tooontv.com:999/live/ere3444h/agape/199008.ts
+http://tooontv.com:999/live/ere3444h/agape/199008.ts",
+  // você pode adicionar mais URLs de backup aqui
+];
+
+let currentSourceIndex = 0;
+const startTime = Date.now();
+
+// Cache em memória
+let cachedChannels: Channel[] = [];
+let cachedPlaylist: string = "";
+let cacheTimestamp = 0;
+const CACHE_DURATION = 3600 * 1000; // 1 hora
+
+const EXTRA_BR = `
 #EXTINF:-1 group-title="Brazil",BR: Dazn 2
 http://tooontv.com:999/live/ere3444h/agape/199013.ts
 `;
